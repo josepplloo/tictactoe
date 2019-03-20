@@ -6,10 +6,12 @@ export default class Game extends React.Component {
     super(props);
     this.state = {
       history: [{
-        squares: Array(9).fill(null)
+        squares: Array(9).fill(null),
+        column: 0,
       }],
       xIsNext: true,
       stepNumber: 0,
+      
     }
   }
 
@@ -30,10 +32,14 @@ export default class Game extends React.Component {
     squares[i] = this.state.xIsNext ? 'X': 'O';
     this.setState({
       history: history.concat([
-        {squares: squares}
+        {
+          squares: squares,
+          column: i,
+        }
       ]),
       xIsNext: !this.state.xIsNext,
       stepNumber: history.length,
+      
     });
   }
 
@@ -41,10 +47,11 @@ export default class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-    const col = current.squares.findIndex((idx) => { return idx === 'X'});
+
     const moves = history.map((step, move) => {
+      const [col, row] = calculateLocation(history[move].column);
       const desc = move ?
-        'Go to move #' + move +': '+col :
+        'Go to move #' + move +': '+ col +', ' + row :
         'Go to game start';
       return (
         <li key={move}>
@@ -74,6 +81,10 @@ export default class Game extends React.Component {
       </div>
     );
   }
+}
+
+function calculateLocation(move) {
+  return [(move % 3) +1, Math.trunc(move /3) +1 ];
 }
 
 function calculateWinner(squares) {
