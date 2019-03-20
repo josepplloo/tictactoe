@@ -48,3 +48,15 @@ ol, ul {
 .game-info {
   margin-left: 20px;
 }
+
+.selected {
+  font-weight: bold;
+}
+
+.unselected {
+  font-weight: lighter;
+}
+
+button {
+  font: inherit;
+}
