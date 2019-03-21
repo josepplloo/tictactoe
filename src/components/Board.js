@@ -7,13 +7,12 @@ export default class Board extends React.Component {
     return <Square value={this.props.squares[index]} onClick={() => this.props.onClick(index)} />;
   }
 
-
   render() {
     let square = -1;
     return (
       <div>
       {
-        [1,2,3].map( () => {
+        [1,2,3].map(() => {
 				  return <div className="board-row">
             {
             	[1,2,3].map( () => {

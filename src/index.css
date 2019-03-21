@@ -60,3 +60,13 @@ ol, ul {
 button {
   font: inherit;
 }
+
+.ascending {
+  display: flex;
+  flex-direction: column;
+}
+
+.descending {
+  display: flex;
+  flex-direction: column-reverse;
+}
